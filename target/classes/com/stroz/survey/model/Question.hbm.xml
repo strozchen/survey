@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-12 8:48:33 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.stroz.survey.model.Question" table="QUESTIONS">
+        <id name="questionType" type="int">
+            <column name="QUESTION_TYPE" />
+            <generator class="assigned" />
+        </id>
+        <property name="title" type="java.lang.String">
+            <column name="TITLE" />
+        </property>
+        <property name="options" type="java.lang.String">
+            <column name="OPTIONS" />
+        </property>
+        <property name="other" type="boolean">
+            <column name="OTHER" />
+        </property>
+        <property name="otherStyle" type="int">
+            <column name="OTHER_STYLE" />
+        </property>
+        <property name="otherSelectOptions" type="java.lang.String">
+            <column name="OTHER_SELECT_OPTIONS" />
+        </property>
+        <property name="matrixRowTitle" type="java.lang.String">
+            <column name="MATRIX_ROW_TITLE" />
+        </property>
+        <property name="matrixColTitle" type="java.lang.String">
+            <column name="MATRIX_COL_TITLE" />
+        </property>
+        <property name="matrixSelectTitle" type="java.lang.String">
+            <column name="MATRIX_SELECT_TITLE" />
+        </property>
+        <many-to-one name="page" class="com.stroz.survey.model.Page" fetch="join">
+            <column name="PAGE_ID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

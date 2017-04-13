@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-11 16:16:29 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.stroz.survey.model.Survey" table="SURVEYS">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="title" type="java.lang.String" length="50">
+            <column name="TITLE" />
+        </property>
+        <property name="preText" type="java.lang.String" length="50">
+            <column name="PRETEXT" />
+        </property>
+        <property name="nextText" type="java.lang.String" length="50">
+            <column name="NEXTTEXT" />
+        </property>
+        <property name="endText" type="java.lang.String" length="50">
+            <column name="ENDTEXT" />
+        </property>
+        <property name="doneText" type="java.lang.String" length="50">
+            <column name="DONETEXT" />
+        </property>
+        <property name="createTime" type="java.util.Date" update="false">
+            <column name="CREATETIME" />
+        </property>
+        
+        <many-to-one name="user" class="com.stroz.survey.model.User" column="USER_ID"></many-to-one>
+        
+        <set name="pages" table="PAGES" inverse="true" lazy="true">
+        	<key>
+        		<column name="PAGE_ID"></column>
+        	</key>
+        	<one-to-many class="com.stroz.survey.model.Page"/>
+        </set>
+    </class>
+</hibernate-mapping>
