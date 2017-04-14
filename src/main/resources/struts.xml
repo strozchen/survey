@@ -2,7 +2,12 @@
    <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
 	"http://struts.apache.org/dtds/struts-2.5.dtd">
-	<struts>
-	<package name="survey" extends="struts-default" namespace="/"></package>
-	
-	</struts>
+
+<struts>
+	<package name="default" extends="struts-default" namespace="/">
+		<action name="RegAction_*" class="com.stroz.survey.struts2.action.RegAction" method="{1}">
+			<result name="regPage">/regPage.jsp</result>
+		</action>
+	</package>
+
+</struts>
