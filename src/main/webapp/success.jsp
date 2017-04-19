@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="RegAction_toRegPage">注册</a>
-<a href="LoginAction_toLoginPage">登陆</a>
+this is success page~
 </body>
 </html>

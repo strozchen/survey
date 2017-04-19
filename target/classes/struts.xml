@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-   <!DOCTYPE struts PUBLIC
-	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
-	"http://struts.apache.org/dtds/struts-2.5.dtd">
-
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-	<package name="default" extends="struts-default" namespace="/">
-		<action name="RegAction_*" class="com.stroz.survey.struts2.action.RegAction" method="{1}">
-			<result name="regPage">/regPage.jsp</result>
-		</action>
+	<!--主题  -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<package name="survey" extends="struts-default" namespace="/">
+	<!-- RegAction -->
+	<action name="RegAction_*" class="regAction" method="{1}">
+		<result name="regPage">/regPage.jsp</result>
+		<result name="input">/regPage.jsp</result>
+		<result name="success">/index.jsp</result>
+		<allowed-methods>toRegPage,doReg</allowed-methods>
+	</action>
+		
+		<!-- LoginAction -->
+	<action name="LoginAction_*" class="loginAction" method="{1}">
+		<result name="loginPage">/loginPage.jsp</result>
+		<result name="input">/loginPage.jsp</result>
+		<result name="success">/success.jsp</result>
+		<allowed-methods>toLoginPage,doLogin</allowed-methods>
+	</action>
+		
 	</package>
 
 </struts>
