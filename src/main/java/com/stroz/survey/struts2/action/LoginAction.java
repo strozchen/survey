@@ -8,6 +8,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.storz.survey.struts2.UserAware;
 import com.stroz.survey.model.User;
 import com.stroz.survey.service.UserService;
 import com.stroz.survey.util.DataUtil;
@@ -19,6 +20,7 @@ public class LoginAction extends BaseAction<User> implements SessionAware{
 	@Resource
 	private UserService userService;
 	private Map<String,Object> sessionMap;
+	private User user;
 	/*
 	 * µ½´ïµÇÂ½Ò³Ãæ
 	 */

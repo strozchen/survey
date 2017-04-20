@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.mysql.fabric.xmlrpc.base.Data;
 
 public class Survey {
 	private Integer id;

@@ -3,27 +3,51 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-	<!--主题  -->
+	<!--主题 -->
 	<constant name="struts.ui.theme" value="simple"></constant>
 	<!-- 开发模式 -->
 	<constant name="struts.devMode" value="true"></constant>
 	<package name="survey" extends="struts-default" namespace="/">
-	<!-- RegAction -->
-	<action name="RegAction_*" class="regAction" method="{1}">
-		<result name="regPage">/regPage.jsp</result>
-		<result name="input">/regPage.jsp</result>
-		<result name="success">/index.jsp</result>
-		<allowed-methods>toRegPage,doReg</allowed-methods>
-	</action>
 		
+		<interceptors>
+			<!-- 自定义拦截器 -->
+			<interceptor name="loginInterceptor" class="com.stroz.survey.struts2.interceptor.LoginInterceptor"/>
+			<!-- 自定义拦截器栈 -->
+			<interceptor-stack name="surveyStack">
+				<interceptor-ref name="loginInterceptor"/>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- 定义默认使用的拦截器栈 -->
+		<default-interceptor-ref name="surveyStack"></default-interceptor-ref>
+		
+		<!--  定义全局结果-->
+		<global-results>
+			<result name="login">/loginPage.jsp</result>
+		</global-results>
+		
+		<!-- RegAction -->
+		<action name="RegAction_*" class="regAction" method="{1}">
+			<result name="regPage">/regPage.jsp</result>
+			<result name="input">/regPage.jsp</result>
+			<result name="success">/index.jsp</result>
+			<allowed-methods>toRegPage,doReg</allowed-methods>
+		</action>
+
 		<!-- LoginAction -->
-	<action name="LoginAction_*" class="loginAction" method="{1}">
-		<result name="loginPage">/loginPage.jsp</result>
-		<result name="input">/loginPage.jsp</result>
-		<result name="success">/success.jsp</result>
-		<allowed-methods>toLoginPage,doLogin</allowed-methods>
-	</action>
-		
+		<action name="LoginAction_*" class="loginAction" method="{1}">
+			<result name="loginPage">/loginPage.jsp</result>
+			<result name="input">/loginPage.jsp</result>
+			<result name="success">/index.jsp</result>
+			<allowed-methods>toLoginPage,doLogin</allowed-methods>
+		</action>
+
+		<action name="SurveyAction_*" class="surveyAction" method="{1}">
+			<result name="mySurveyListPage">/mySurveyList.jsp</result>
+			<result name="designSurveyPage">/designSurvey.jsp</result>
+			<allowed-methods>mySurveys,newSurvey</allowed-methods>
+		</action>
 	</package>
 
 </struts>

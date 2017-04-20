@@ -1,7 +1,5 @@
 package com.stroz.survey.test;
 
-import static org.junit.Assert.*;
-
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -10,28 +8,21 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.stroz.survey.model.User;
 import com.stroz.survey.service.SurveyService;
-import com.stroz.survey.service.UserService;
 
-public class TestUserService {
-
-	private static UserService us;
-
+public class TestSurveyService {
+	
+	private static SurveyService surveyService;
+	
 	@BeforeClass
 	public static void initUs(){
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring_bean.xml");
-		us=(UserService) ctx.getBean("userService");	
+		surveyService=(SurveyService) ctx.getBean("surveyService");	
 	}
-	
 	@Test
-	public void insertUser() {
+	public void TestnewSurvey() {
 		User u=new User();
-		u.setName("ÀîËÄ");
-		u.setPassword("222222");
-		u.setEmail("lisi@xxx.com");
-		u.setNickName("ls");
-		
-		us.saveEntity(u);
-
+		u.setId(7);
+		surveyService.newSurvey(u);
 	}
 
 }
