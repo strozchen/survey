@@ -15,7 +15,12 @@
 			<!-- 自定义拦截器栈 -->
 			<interceptor-stack name="surveyStack">
 				<interceptor-ref name="loginInterceptor"/>
-				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="defaultStack">
+					<param name="modelDriven.refreshModelBeforeResult">true</param>
+				</interceptor-ref>
+				<!--
+				<interceptor-ref name="paramsPrepareParamsStack"></interceptor-ref>
+				  -->
 			</interceptor-stack>
 		</interceptors>
 		
@@ -46,7 +51,13 @@
 		<action name="SurveyAction_*" class="surveyAction" method="{1}">
 			<result name="mySurveyListPage">/mySurveyList.jsp</result>
 			<result name="designSurveyPage">/designSurvey.jsp</result>
-			<allowed-methods>mySurveys,newSurvey</allowed-methods>
+			<result name="editSurveyPage">/editSurvey.jsp</result>
+			<result name="designSurveyAction" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">SurveyAction_designSurvey</param>
+				<param name="sid">${sid}</param>			
+			</result>
+			<allowed-methods>mySurveys,newSurvey,designSurvey,editSurveyPage,updataSurvey</allowed-methods>
 		</action>
 	</package>
 

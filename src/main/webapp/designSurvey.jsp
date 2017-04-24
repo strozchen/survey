@@ -9,6 +9,10 @@
 </head>
 <body>
 	this is designSurveyPage.jsp
+	<br>
+	<s:set var="sId" value="id"></s:set>
+	<s:a href="SurveyAction_editSurveyPage?sid=%{#sId}">edit survey</s:a>
+	<hr>
 	<!-- 调查标题 -->
 	<s:property value="title" />
 	<!-- 迭代页面 -->

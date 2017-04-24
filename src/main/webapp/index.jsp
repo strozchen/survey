@@ -10,6 +10,7 @@
 <body>
 	<s:if test="#session.user">
 	欢迎：<s:property value="#session.user.email" />
+	<hr>
 	</s:if>
 	<a href="RegAction_toRegPage">注册</a>
 	<a href="LoginAction_toLoginPage">登陆</a>
