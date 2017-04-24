@@ -57,7 +57,10 @@
 				<param name="actionName">SurveyAction_designSurvey</param>
 				<param name="sid">${sid}</param>			
 			</result>
+			<allowed-methods>regex:.*</allowed-methods>
+			<!--  
 			<allowed-methods>mySurveys,newSurvey,designSurvey,editSurveyPage,updataSurvey</allowed-methods>
+			-->
 		</action>
 	</package>
 
