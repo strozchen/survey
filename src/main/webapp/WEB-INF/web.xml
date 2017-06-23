@@ -9,6 +9,17 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
+	<!-- openSessionInViewFliter 改过滤器在view渲染之前始终开启session，解决hibernate懒加载问题
+		必须配置在struts2过滤器之前
+	<filter>
+		<filter-name>openSessionInViewFliter</filter-name>
+		<filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>openSessionInViewFliter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	-->
 	<filter>
 		<filter-name>action</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
@@ -17,6 +28,8 @@
 		<filter-name>action</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
 	
 	<!-- needed for ContextLoaderListener -->
 	<context-param>
