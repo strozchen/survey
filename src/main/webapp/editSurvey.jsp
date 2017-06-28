@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<s:include value="header.jsp" />
 <s:form action="SurveyAction_updataSurvey">
 	<s:hidden name="id"></s:hidden>
 	调查标题：<s:textfield name="title"></s:textfield>

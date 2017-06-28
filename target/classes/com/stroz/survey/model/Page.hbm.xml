@@ -17,11 +17,11 @@
         <many-to-one name="survey" class="com.stroz.survey.model.Survey" fetch="join">
             <column name="SURVEY_ID" />
         </many-to-one>
-        <set name="questions" table="QUESTIONS" inverse="true" lazy="true">
+        <set name="questions" table="QUESTIONS" inverse="true" lazy="true" order-by="id">
             <key>
                 <column name="PAGE_ID" />
             </key>
-            <one-to-many class="com.stroz.survey.model.Question" />
+            <one-to-many class="com.stroz.survey.model.Question"/>
         </set>
     </class>
 </hibernate-mapping>

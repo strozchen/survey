@@ -30,6 +30,11 @@
 		<!--  定义全局结果-->
 		<global-results>
 			<result name="login">/loginPage.jsp</result>
+			<result name="designSurveyAction" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">SurveyAction_designSurvey</param>
+				<param name="sid">${sid}</param>			
+			</result>
 		</global-results>
 		
 		<!-- RegAction -->
@@ -52,15 +57,31 @@
 			<result name="mySurveyListPage">/mySurveyList.jsp</result>
 			<result name="designSurveyPage">/designSurvey.jsp</result>
 			<result name="editSurveyPage">/editSurvey.jsp</result>
-			<result name="designSurveyAction" type="redirectAction">
-				<param name="namespace">/</param>
-				<param name="actionName">SurveyAction_designSurvey</param>
-				<param name="sid">${sid}</param>			
-			</result>
 			<allowed-methods>regex:.*</allowed-methods>
 			<!--  
 			<allowed-methods>mySurveys,newSurvey,designSurvey,editSurveyPage,updataSurvey</allowed-methods>
 			-->
+		</action>
+		
+		<action name="PageAction_*" method="{1}" class="pageAction">
+			<result name="addPagePage">/editPage.jsp</result>
+			<result name="editPagePage">/editPage.jsp</result>			
+			<allowed-methods>regex:.*</allowed-methods>
+		</action>
+		
+		<action name="QuestionAction_*" method="{1}" class="questionAction">
+			<result name="SelectQusetionTypePage">/selectQuestionType.jsp</result>
+			<result name="0">/designQusetion/nonMatrixWithOtherQuestionDesign.jsp</result>
+			<result name="1">/designQusetion/nonMatrixWithOtherQuestionDesign.jsp</result>
+			<result name="2">/designQusetion/nonMatrixWithOtherQuestionDesign.jsp</result>
+			<result name="3">/designQusetion/nonMatrixWithOtherQuestionDesign.jsp</result>
+			
+			<result name="4">/designQusetion/nonMatrixSelectQuestionDesign.jsp</result>
+			<result name="5">/designQusetion/nonMatrixTextQuestionDesign.jsp</result>
+			<result name="6">/designQusetion/matrixNormalQuestionDesign.jsp</result>
+			<result name="7">/designQusetion/matrixNormalQuestionDesign.jsp</result>
+			<result name="8">/designQusetion/matrixSelectQuestionDesign.jsp</result>
+			<allowed-methods>regex:.*</allowed-methods>
 		</action>
 	</package>
 

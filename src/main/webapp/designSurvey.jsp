@@ -5,100 +5,268 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href='<s:url value="/css/styles.css" />'>
+<title>designSurveyPage</title>
 </head>
 <body>
-	this is designSurveyPage.jsp
+	<s:include value="header.jsp" />
 	<br>
 	<s:set var="sId" value="id"></s:set>
 	<s:a href="SurveyAction_editSurveyPage?sid=%{#sId}">edit survey</s:a>
+	<s:a href="PageAction_toAddPage?sid=%{#sId}">add page</s:a>
 	<hr>
-	<!-- 调查标题 -->
-	<s:property value="title" />
-	<!-- 迭代页面 -->
-	<s:iterator value="pages" var="p">
-		<!-- 页面标题 -->
-		<s:property value="#p.title" />
-		<!-- 迭代问题 -->
-		<s:iterator value="#p.questions" var="q">
-			<!-- 问题页标题 -->
-			<s:property value="#q.title" />
-			<!-- 根据 questionType配置选项-->
-			<s:set var="qt" value="#q.questionType"></s:set>
 
-			<s:if test="#qt<4">
-				<s:iterator value="#q.optionArr">
-					<input type="<s:property value="#qt"/><2?'radio:'checkbox'">
-					<s:property />
-					<!-- 是否携带BR -->
-					<s:if test="#qt==1||#qt==3">
-						<br>
-					</s:if>
-				</s:iterator>
-				<!-- 是否存在其他 -->
-				<s:if test="#q.other">
-					<input type="<s:property value="#qt"/><2?'radio:'checkbox'">其它
-					<!-- 其他为输入框 -->
-					<s:if test="q.otherStyle==1">
-						<input type="text">
-					</s:if>
-					<!-- 其他为下拉框 -->
-					<s:if test="q.otherStyle==2">
-						<select>
-							<!-- 迭代下拉框内容 -->
-							<s:iterator value="#q.otherSelectOptionArr">
-								<option><s:property /></option>
-							</s:iterator>
-						</select>
-					</s:if>
-				</s:if>
-			</s:if>
-			<s:elseif test="#qt==4||#qt==5">
-				<s:if test="#qt==4">
-					<select>
-						<!-- 迭代下拉框内容 -->
-						<s:iterator value="#q.optionArr">
-							<option><s:property /></option>
-						</s:iterator>
-					</select>
-				</s:if>
-				<s:elseif test="#qt==5">
-					<input type="text">
-				</s:elseif>
-			</s:elseif>
-			<s:elseif test="#qt>5">
+	<table>
+		<tr>
+			<td colspan="2" class="tdWhiteLine"></td>
+		</tr>
+		<tr>
+			<td colspan="2" class="tdHeader">设计调查</td>
+		</tr>
+		<tr>
+			<td colspan="2" class="tdWhiteLine"></td>
+		</tr>
+		<tr>
+			<td class="tdSHeaderL"><s:if test="photoExists()">
+					<img src="<s:url value="%{logoPhotoPath}" />" height="25px"
+						width="50px">
+				</s:if> <!-- 调查标题 --> <s:property value="title" /></td>
+			<td class="tdSHeaderR"><s:a namespace="/"
+					action="SurveyAction_toAddLogoPage?sid=%{#sId}">增加Logo</s:a>&nbsp;
+				<s:a action="SurveyAction_editSurvey?sid=%{#sId}" namespace="/">编辑调查</s:a>&nbsp;
+				<s:a namespace="/" action="PageAction_toAddPage?sid=%{#sId}">增加页</s:a>&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align: left; vertical-align: top;">
 				<table>
-					<!-- 表头 -->
 					<tr>
-						<td></td>
-						<s:iterator value="q.matrixColTitleArr">
-							<td><s:property /></td>
-						</s:iterator>
+						<td width="30px"></td>
+						<td width="*">
+						<table>
+						<!-- 迭代页面集合 -->
+						<s:iterator var="p" value="pages">
+						<s:set var="pId" value="#p.id" />
+							<tr>
+								<td>
+									<table>
+										<tr>
+											<!-- 页面标题 -->
+											<td class="tdPHeaderL"><s:property value="#p.title" /></td>
+											<td class="tdPHeaderR">
+												<s:a namespace="/" action="PageAction_editPage?sid=%{#sId}&pid=%{#pId}">编辑页标题</s:a>&nbsp;
+												<s:a namespace="/" action="MoveOrCopyPageAction_toSelectTargetPage?srcPid=%{#pId}">移动/复制页</s:a>&nbsp;
+												<s:a namespace="/" action="QuestionAction_toSelectQusetionType?sid=%{#sId}&pid=%{#pId}">增加问题</s:a>&nbsp;
+												<s:a namespace="/" action="PageAction_deletePage?sid=%{#sId}&pid=%{#pId}">删除页</s:a>&nbsp;
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<table>
+										<tr>
+											<td width="30px"></td>
+											<td width="*">
+												<table>
+													<tr>
+														<td>
+															<table>
+																<!-- 迭代问题集合 -->
+																<s:iterator var="q" value="#p.questions">
+																<s:set var="qId" value="#q.id" />
+																<tr>
+																	<!-- 问题题干 -->
+																	<td class="tdQHeaderL"><s:property value="#q.title" /></td>
+																	<td class="tdQHeaderR">
+																		<s:a namespace="/" action="QuestionAction_editQuestion?sid=%{#sId}&pid=%{pId}&qid=%{#qId}">编辑问题</s:a>&nbsp;
+																		<s:a namespace="/" action="QuestionAction_deleteQuestion?sid=%{#sId}&qid=%{#qId}">删除问题</s:a>&nbsp;
+																	</td>
+																</tr>
+																<tr>
+																	<td colspan="2" style="text-align: left;color: black;background-color: white">
+																		<!-- 定义变量,设置第一大类的题型 -->
+																		<s:set var="qt" value="#q.questionType" />
+																		<!-- 判断当前题型是否属于第一大类(0,1,2,3) -->
+																		<s:if test='#qt lt 4'>
+																			<s:iterator value="#q.optionArr">
+																				<input type='<s:property value="#qt < 2?'radio':'checkbox'" />'><s:property />
+																				<s:if test="#qt == 1 || #qt == 3"><br></s:if>
+																			</s:iterator>
+																			<!-- 处理other问题 -->
+																			<s:if test="#q.other">
+																				<input type='<s:property value="#qt < 2?'radio':'checkbox'" />'>其他
+																				<!-- 文本框 -->
+																				<s:if test="#q.otherStyle == 1">
+																					<input type="text">
+																				</s:if>
+																				<!--  下拉列表 -->
+																				<s:elseif test="#q.otherStyle == 2">
+																					<select>
+																						<s:iterator value="#q.otherSelectOptionArr" >
+																							<option><s:property /></option>
+																						</s:iterator>
+																					</select>
+																				</s:elseif>
+																			</s:if>
+																		</s:if>
+																		
+																		<!-- 下拉列表 -->
+																		<s:if test="#qt == 4">
+																			<select>
+																				<s:iterator value="#q.optionArr" >
+																					<option><s:property /></option>
+																				</s:iterator>
+																			</select>
+																		</s:if>
+																		<!-- text -->
+																		<s:if test="#qt == 5">
+																			<input type="text">
+																		</s:if>
+																		
+																		<!-- 矩阵问题(6,7,8) -->
+																		<s:if test="#qt > 5">
+																			<table>
+																				<!-- 列头 -->
+																				<tr>
+																					<td></td>
+																					<s:iterator value="#q.matrixColTitleArr">
+																						<td><s:property /></td>
+																					</s:iterator>
+																				</tr>
+																				<!-- 输出n多行 -->
+																				<s:iterator value="#q.matrixRowTitleArr">
+																					<tr>
+																						<td><s:property /></td>
+																						<!-- 套打控件 -->
+																						<s:iterator value="#q.matrixColTitleArr">
+																							<td>
+																								<!-- radio -->
+																								<s:if test="#qt == 6"><input type="radio"></s:if>
+																								<s:if test="#qt == 7"><input type="checkbox"></s:if>
+																								<s:if test="#qt == 8">
+																									<select>
+																										<s:iterator value="#q.matrixSelectOptionArr">
+																											<option><s:property /></option>
+																										</s:iterator>
+																									</select>
+																								</s:if>
+																							</td>
+																						</s:iterator>
+																					</tr>
+																				</s:iterator>
+																			</table>
+																		</s:if>
+																	</td>
+																</tr>
+																</s:iterator>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							</s:iterator>
+						</table>
+						<%-- 自己写的不带格式
+							<table>
+
+								<!-- 迭代页面 -->
+								<s:iterator value="pages" var="p">
+									<!-- 页面标题 -->
+									<s:property value="#p.title" />
+									<!-- 迭代问题 -->
+									<s:iterator value="#p.questions" var="q">
+										<!-- 问题页标题 -->
+										<s:property value="#q.title" />
+										<!-- 根据 questionType配置选项-->
+										<s:set var="qt" value="#q.questionType"></s:set>
+
+										<s:if test="#qt<4">
+											<s:iterator value="#q.optionArr">
+												<input type="<s:property value="#qt"/><2?'radio:'checkbox'">
+												<s:property />
+												<!-- 是否携带BR -->
+												<s:if test="#qt==1||#qt==3">
+													<br>
+												</s:if>
+											</s:iterator>
+											<!-- 是否存在其他 -->
+											<s:if test="#q.other">
+												<input type="<s:property value="#qt"/><2?'radio:'checkbox'">其它
+												<!-- 其他为输入框 -->
+												<s:if test="q.otherStyle==1">
+													<input type="text">
+												</s:if>
+												<!-- 其他为下拉框 -->
+												<s:if test="q.otherStyle==2">
+													<select>
+														<!-- 迭代下拉框内容 -->
+														<s:iterator value="#q.otherSelectOptionArr">
+															<option><s:property /></option>
+														</s:iterator>
+													</select>
+												</s:if>
+											</s:if>
+										</s:if>
+										<s:elseif test="#qt==4||#qt==5">
+											<s:if test="#qt==4">
+												<select>
+													<!-- 迭代下拉框内容 -->
+													<s:iterator value="#q.optionArr">
+														<option><s:property /></option>
+													</s:iterator>
+												</select>
+											</s:if>
+											<s:elseif test="#qt==5">
+												<input type="text">
+											</s:elseif>
+										</s:elseif>
+										<s:elseif test="#qt>5">
+											<table>
+												<!-- 表头 -->
+												<tr>
+													<td></td>
+													<s:iterator value="q.matrixColTitleArr">
+														<td><s:property /></td>
+													</s:iterator>
+												</tr>
+												<!-- 输出N行 -->
+												<s:iterator value="q.matrixRowTitle">
+													<td><s:property /></td>
+													<s:iterator value="q.matrixColTitleArr">
+														<td><s:if test="#qt==6">
+																<input type="radio">
+															</s:if> <s:elseif test="#qt==7">
+																<input type="checkbox">
+															</s:elseif> <s:elseif test="#qt==8">
+																<select>
+																	<s:iterator value="#q.matrixSelectTitleArr">
+																		<option><s:property /></option>
+																	</s:iterator>
+																</select>
+															</s:elseif></td>
+													</s:iterator>
+												</s:iterator>
+											</table>
+										</s:elseif>
+
+									</s:iterator>
+
+
+								</s:iterator>
+
+							</table>
+						--%>
+						</td>
 					</tr>
-					<!-- 输出N行 -->
-					<s:iterator value="q.matrixRowTitle">
-						<td><s:property /></td>
-						<s:iterator value="q.matrixColTitleArr">
-							<td><s:if test="#qt==6">
-									<input type="radio">
-								</s:if> <s:elseif test="#qt==7">
-									<input type="checkbox">
-								</s:elseif> 
-								<s:elseif test="#qt==8">
-									<select>
-										<s:iterator value="#q.matrixSelectTitleArr">
-											<option><s:property /></option>
-										</s:iterator>
-									</select>
-								</s:elseif></td>
-						</s:iterator>
-					</s:iterator>
 				</table>
-			</s:elseif>
-
-		</s:iterator>
-
-
-	</s:iterator>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>

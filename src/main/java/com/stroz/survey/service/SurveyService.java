@@ -2,6 +2,8 @@ package com.stroz.survey.service;
 
 import java.util.List;
 
+import com.stroz.survey.model.Page;
+import com.stroz.survey.model.Question;
 import com.stroz.survey.model.Survey;
 import com.stroz.survey.model.User;
 /*
@@ -29,5 +31,15 @@ public interface SurveyService {
 	 * 更新survey
 	 */
 	public void updataSurvey(Survey model);
+	//添加/更新page
+	public void saveOrUpdataPage(Page model);
+	/*
+	 * 编辑页面
+	 */
+	public Page getPage(Integer pid);
+	/*
+	 * 更新问题
+	 */
+	public void saveOrUpdataQuestion(Question model);
 
 }

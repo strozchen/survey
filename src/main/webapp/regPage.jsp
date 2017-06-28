@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<s:include value="header.jsp" />
 	<s:form action="RegAction_doReg" namespace="/" method="post">
 		E-mail:<s:textfield name="email"></s:textfield><s:fielderror><s:param>email</s:param></s:fielderror>
 		<br>

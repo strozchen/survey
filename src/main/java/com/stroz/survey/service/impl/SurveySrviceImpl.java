@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.stroz.survey.dao.BaseDAO;
 import com.stroz.survey.model.Page;
+import com.stroz.survey.model.Question;
 import com.stroz.survey.model.Survey;
 import com.stroz.survey.model.User;
 import com.stroz.survey.service.SurveyService;
@@ -18,6 +19,8 @@ public class SurveySrviceImpl implements SurveyService {
 	private BaseDAO<Survey> surveyDAO;
 	@Resource(name="pageDAO")
 	private BaseDAO<Page> pageDAO;
+	@Resource(name="questionDAO")
+	private BaseDAO<Question> questionDAO;
 	/*
 	 * 查找调查列表
 	 */
@@ -61,5 +64,23 @@ public class SurveySrviceImpl implements SurveyService {
 	@Override
 	public void updataSurvey(Survey model) {
 		this.surveyDAO.updateEntity(model);
+	}
+	/*
+	 * 保存/更新页面
+	 */
+	public void saveOrUpdataPage(Page model){
+		pageDAO.saveOrUpdateEntity(model);
+	}
+	/*
+	 * 按照id查询页面
+	 */
+	public Page getPage(Integer pid){
+		return pageDAO.getEntity(pid);
+	}
+	/*
+	 * 保存/更新问题
+	 */
+	public void saveOrUpdataQuestion(Question model){
+		questionDAO.saveOrUpdateEntity(model);
 	}
 }

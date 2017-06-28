@@ -1,6 +1,7 @@
 package com.stroz.survey.model;
 
 import com.stroz.survey.util.StringUtil;
+import com.stroz.survey.util.ValidateUtil;
 
 public class Question {
 	private static final String RN="\r\n";

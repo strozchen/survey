@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<s:include value="header.jsp" />
+<hr>
 <s:form action="LoginAction_doLogin" namespace="/" method="post">
 	用户名：<input type="text" name="email" value="zhangsan@stroz.com">
 	密码：<input type="password" name="password" class="text" value="111111">
