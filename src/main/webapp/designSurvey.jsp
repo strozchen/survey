@@ -147,7 +147,7 @@
 																								<s:if test="#qt == 7"><input type="checkbox"></s:if>
 																								<s:if test="#qt == 8">
 																									<select>
-																										<s:iterator value="#q.matrixSelectOptionArr">
+																										<s:iterator value="#q.matrixSelectTitleArr">
 																											<option><s:property /></option>
 																										</s:iterator>
 																									</select>

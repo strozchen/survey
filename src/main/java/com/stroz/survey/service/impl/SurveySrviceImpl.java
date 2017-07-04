@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.stroz.survey.dao.BaseDAO;
+import com.stroz.survey.model.Answer;
 import com.stroz.survey.model.Page;
 import com.stroz.survey.model.Question;
 import com.stroz.survey.model.Survey;
@@ -21,6 +22,8 @@ public class SurveySrviceImpl implements SurveyService {
 	private BaseDAO<Page> pageDAO;
 	@Resource(name="questionDAO")
 	private BaseDAO<Question> questionDAO;
+	@Resource(name="answerDAO")
+	private BaseDAO<Answer> answerDAO;
 	/*
 	 * 查找调查列表
 	 */
@@ -82,5 +85,30 @@ public class SurveySrviceImpl implements SurveyService {
 	 */
 	public void saveOrUpdataQuestion(Question model){
 		questionDAO.saveOrUpdateEntity(model);
+	}
+	/*
+	 * 删除问题，同时删除答案
+	 */
+	@Override
+	public void deleteQusetion(Integer qid) {
+		String hql="delete from Answer a where a.questionId=?";
+		answerDAO.batchEntityByHQL(hql, qid);
+		hql="delete from Question q where q.id=?";
+		questionDAO.batchEntityByHQL(hql, qid);
+		
+		
+	}
+	/*
+	 * 删除页面，同时删除页面和答案
+	 */
+	@Override
+	public void deletePage(Integer pid) {
+		String hql="delete from Answer a where a.questionId in (selete q.id from Qusetion q where q.page.id=?)";
+		answerDAO.batchEntityByHQL(hql, pid);
+		hql="delete from Question q where q.page.id=?";
+		questionDAO.batchEntityByHQL(hql, pid);
+		hql="delete from Page p where p.id=?";
+		pageDAO.batchEntityByHQL(hql, pid);
+		
 	}
 }

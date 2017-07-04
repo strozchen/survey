@@ -15,10 +15,22 @@ public class QuestionAction extends BaseAction<Question> {
 	private static final long serialVersionUID = 5309173869909225326L;
 	private Integer sid;
 	private Integer pid;
+	private Integer qid;
 	@Resource
 	private SurveyService surveyService;
+
 	
 	
+	public Integer getQid() {
+		return qid;
+	}
+
+
+	public void setQid(Integer qid) {
+		this.qid = qid;
+	}
+
+
 	public Integer getSid() {
 		return sid;
 	}
@@ -59,5 +71,12 @@ public class QuestionAction extends BaseAction<Question> {
 		model.setPage(p);
 		surveyService.saveOrUpdataQuestion(model);
 		return "designSurveyAction";		
+	}
+	/*
+	 * …æ≥˝Œ Ã‚
+	 */
+	public String deleteQuestion(){
+		surveyService.deleteQusetion(qid);		
+		return "designSurveyAction";
 	}
 }

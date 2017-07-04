@@ -5,7 +5,7 @@ import com.stroz.survey.util.ValidateUtil;
 
 public class Question {
 	private static final String RN="\r\n";
-	
+	private Integer id;
 	//题型0-8
 	private int questionType;
 	private String title;
@@ -31,6 +31,14 @@ public class Question {
 	
 	//问题到页面的多对一关系
 	private Page page;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public int getQuestionType() {
 		return questionType;

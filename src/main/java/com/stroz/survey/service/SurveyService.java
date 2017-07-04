@@ -41,5 +41,13 @@ public interface SurveyService {
 	 * 更新问题
 	 */
 	public void saveOrUpdataQuestion(Question model);
+	/*
+	 * 删问题
+	 */
+	public void deleteQusetion(Integer qid);
+	/*
+	 * 删除页面
+	 */
+	public void deletePage(Integer pid);
 
 }

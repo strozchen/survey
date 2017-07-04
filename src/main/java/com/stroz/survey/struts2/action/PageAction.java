@@ -58,4 +58,11 @@ public class PageAction extends BaseAction<Page> {
 		model=surveyService.getPage(pid);
 		return "editPagePage";
 	}
+	/*
+	 * É¾³ýÒ³Ãæ
+	 */
+	public String deletePage(){
+		surveyService.deletePage(pid);
+		return "designSurveyaAction";
+	}
 }

@@ -23,11 +23,11 @@
 			</tr>
 			<tr>
 				<td style="text-align: right;vertical-align: top;">行标题标签组:</td>
-				<td width="*" style="text-align: left;"><s:textarea cols="41" rows="8" name="matrixRowTitles" /></td>
+				<td width="*" style="text-align: left;"><s:textarea cols="41" rows="8" name="matrixRowTitle" /></td>
 			</tr>
 			<tr>
 				<td style="text-align: right;vertical-align: top;">列标题标签组:</td>
-				<td width="*" style="text-align: left;"><s:textarea cols="41" rows="8" name="matrixColTitles" /></td>
+				<td width="*" style="text-align: left;"><s:textarea cols="41" rows="8" name="matrixColTitle" /></td>
 			</tr>
 			<tr>
 				<td style="text-align: right;"></td>
