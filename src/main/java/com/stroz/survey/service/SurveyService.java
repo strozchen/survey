@@ -49,5 +49,13 @@ public interface SurveyService {
 	 * 删除页面
 	 */
 	public void deletePage(Integer pid);
+	/*
+	 * 删除调查
+	 */
+	public void deleteSurvey(Integer sid);
+	/*
+	 * 编辑问题
+	 */
+	public Question getQuestion(Integer qid);
 
 }

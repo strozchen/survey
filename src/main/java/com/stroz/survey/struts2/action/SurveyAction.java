@@ -94,4 +94,11 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware {
 		surveyService.updataSurvey(model);
 		return "designSurveyAction";
 	}
+	/*
+	 * É¾³ýµ÷²é
+	 */
+	public String deleteSurvey(){
+		surveyService.deleteSurvey(sid);
+		return "findMySurveyAction";
+	}
 }

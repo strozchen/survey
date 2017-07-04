@@ -63,6 +63,6 @@ public class PageAction extends BaseAction<Page> {
 	 */
 	public String deletePage(){
 		surveyService.deletePage(pid);
-		return "designSurveyaAction";
+		return "designSurveyAction";
 	}
 }

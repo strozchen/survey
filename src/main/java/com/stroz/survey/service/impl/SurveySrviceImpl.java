@@ -99,16 +99,41 @@ public class SurveySrviceImpl implements SurveyService {
 		
 	}
 	/*
-	 * 删除页面，同时删除页面和答案
+	 * 删除页面，同时删除问题和答案
 	 */
 	@Override
 	public void deletePage(Integer pid) {
-		String hql="delete from Answer a where a.questionId in (selete q.id from Qusetion q where q.page.id=?)";
+		String hql="delete from Answer a where a.questionId in (select q.id from Question q where q.page.id=?)";
 		answerDAO.batchEntityByHQL(hql, pid);
 		hql="delete from Question q where q.page.id=?";
 		questionDAO.batchEntityByHQL(hql, pid);
 		hql="delete from Page p where p.id=?";
 		pageDAO.batchEntityByHQL(hql, pid);
 		
+	}
+	/*
+	 * 删除调查,同时删除页面，问题，答案
+	 */
+	@Override
+	public void deleteSurvey(Integer sid) {
+		// TODO Auto-generated method stub
+		String hql="delete from Answer a where a.surveyId=?";
+		answerDAO.batchEntityByHQL(hql, sid);
+		//hibernate 中，不允许两级以上的链接
+		hql="delete from Question q where q.page.id in (select p.id from Page p where p.survey.id=?)";
+		questionDAO.batchEntityByHQL(hql, sid);
+		hql="delete from Page p where p.survey.id=?";
+		pageDAO.batchEntityByHQL(hql, sid);
+		hql="delete from Survey s where s.id=?";
+		surveyDAO.batchEntityByHQL(hql, sid);
+		
+	}
+	/*
+	 * 编辑问题
+	 */
+	@Override
+	public Question getQuestion(Integer qid) {
+		// TODO Auto-generated method stub
+		return questionDAO.getEntity(qid);
 	}
 }
