@@ -8,9 +8,9 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.storz.survey.struts2.UserAware;
 import com.stroz.survey.model.User;
 import com.stroz.survey.service.UserService;
+import com.stroz.survey.struts2.UserAware;
 import com.stroz.survey.util.DataUtil;
 @Controller
 @Scope("prototype")

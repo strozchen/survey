@@ -1,4 +1,4 @@
-package com.storz.survey.struts2;
+package com.stroz.survey.struts2;
 
 import com.stroz.survey.model.User;
 

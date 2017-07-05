@@ -2,8 +2,8 @@ package com.stroz.survey.struts2.interceptor;
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
-import com.storz.survey.struts2.UserAware;
 import com.stroz.survey.model.User;
+import com.stroz.survey.struts2.UserAware;
 import com.stroz.survey.struts2.action.BaseAction;
 import com.stroz.survey.struts2.action.LoginAction;
 import com.stroz.survey.struts2.action.RegAction;
