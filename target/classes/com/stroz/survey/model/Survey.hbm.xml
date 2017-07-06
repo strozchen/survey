@@ -23,10 +23,11 @@
         <property name="doneText" type="java.lang.String" length="50">
             <column name="DONETEXT" />
         </property>
+        <property name="closed" type="boolean" column="CLOSED"></property>
         <property name="createTime" type="java.util.Date" update="false">
             <column name="CREATETIME" />
         </property>
-        
+        <property name="logoPath" type="java.lang.String" length="200" column="LOGOPATH"></property>
         <many-to-one name="user" class="com.stroz.survey.model.User" column="USER_ID"></many-to-one>
         
         <set name="pages" table="PAGES" inverse="true" lazy="true" order-by="id">

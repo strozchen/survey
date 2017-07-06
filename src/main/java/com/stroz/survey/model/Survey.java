@@ -15,7 +15,22 @@ public class Survey {
 	private Date createTime=new Date();
 	private User user;
 	private Set<Page> pages=new HashSet<>();
+	private boolean closed;
+	private String logoPath;
 	
+	
+	public String getLogoPath() {
+		return logoPath;
+	}
+	public void setLogoPath(String logoPath) {
+		this.logoPath = logoPath;
+	}
+	public boolean isClosed() {
+		return closed;
+	}
+	public void setClosed(boolean closed) {
+		this.closed = closed;
+	}
 	public Integer getId() {
 		return id;
 	}

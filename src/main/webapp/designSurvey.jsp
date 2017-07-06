@@ -27,13 +27,16 @@
 			<td colspan="2" class="tdWhiteLine"></td>
 		</tr>
 		<tr>
-			<td class="tdSHeaderL"><s:if test="photoExists()">
-					<img src="<s:url value="%{logoPhotoPath}" />" height="25px"
-						width="50px">
-				</s:if> <!-- 调查标题 --> <s:property value="title" /></td>
+			<td class="tdSHeaderL">
+			<s:if test="photoExits()">
+					<img src="<s:url value="%{logoPath}" />" height="25px"	width="50px">
+			</s:if>
+				<!-- 调查标题 --> 
+				<s:property value="title" />
+			</td>
 			<td class="tdSHeaderR"><s:a namespace="/"
 					action="SurveyAction_toAddLogoPage?sid=%{#sId}">增加Logo</s:a>&nbsp;
-				<s:a action="SurveyAction_editSurvey?sid=%{#sId}" namespace="/">编辑调查</s:a>&nbsp;
+				<s:a action="SurveyAction_editSurveyPage?sid=%{#sId}" namespace="/">编辑调查</s:a>&nbsp;
 				<s:a namespace="/" action="PageAction_toAddPage?sid=%{#sId}">增加页</s:a>&nbsp;
 			</td>
 		</tr>

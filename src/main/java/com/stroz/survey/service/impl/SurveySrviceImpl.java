@@ -136,4 +136,32 @@ public class SurveySrviceImpl implements SurveyService {
 		// TODO Auto-generated method stub
 		return questionDAO.getEntity(qid);
 	}
+	/*
+	 * 删除答案
+	 */
+	@Override
+	public void clearAnswer(Integer sid) {
+		// TODO Auto-generated method stub
+		String hql="delete from Answer a where a.surveyId=?";
+		answerDAO.batchEntityByHQL(hql, sid);
+	}
+	/*
+	 * 打开/关闭调查
+	 */
+	@Override
+	public void toggleStatus(Integer sid) {
+		// TODO Auto-generated method stub
+		Survey s=this.getSruvey(sid);
+		String hql="update Survey s set s.closed=? where s.id=?";
+		surveyDAO.batchEntityByHQL(hql, !s.isClosed(),sid);
+	}
+	/*
+	 * 更新logo路径
+	 */
+	@Override
+	public void updateLogoPhotoPath(Integer sid, String string) {
+		// TODO Auto-generated method stub
+		String hql="update Survey s set s.logoPath=? where s.id=?";
+		surveyDAO.batchEntityByHQL(hql, string, sid);
+	}
 }

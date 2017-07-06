@@ -17,6 +17,9 @@
 				<interceptor-ref name="loginInterceptor"/>
 				<interceptor-ref name="defaultStack">
 					<param name="modelDriven.refreshModelBeforeResult">true</param>
+					<param name="fileUpload.maximumSize">60000</param>
+					<param name="fileUpload.allowedExtensions">.jpg,.jpeg,.bmp,.gif,.png</param>
+					<param name="fileUpload.allowedTypes">image/jpg,image/jpeg,/image/png,image/gif,image/bmp,image/pjpeg</param>
 				</interceptor-ref>
 				<!--
 				<interceptor-ref name="paramsPrepareParamsStack"></interceptor-ref>
@@ -57,10 +60,12 @@
 			<result name="mySurveyListPage">/mySurveyList.jsp</result>
 			<result name="designSurveyPage">/designSurvey.jsp</result>
 			<result name="editSurveyPage">/editSurvey.jsp</result>
+			<result name="addLogoPage">/addLogo.jsp</result>
 			<result name="findMySurveyAction" type="redirectAction">
 				<param name="namespace">/</param>
 				<param name="actionName">SurveyAction_mySurveys</param>
 			</result>
+			<result name="input">${inputPage}</result>
 			<allowed-methods>regex:.*</allowed-methods>
 			<!--  
 			<allowed-methods>mySurveys,newSurvey,designSurvey,editSurveyPage,updataSurvey</allowed-methods>

@@ -57,5 +57,17 @@ public interface SurveyService {
 	 * 编辑问题
 	 */
 	public Question getQuestion(Integer qid);
+	/*
+	 * 删除答案
+	 */
+	public void clearAnswer(Integer sid);
+	/*
+	 * 打开/关闭调查
+	 */
+	public void toggleStatus(Integer sid);
+	/*
+	 * 更新logo路径
+	 */
+	public void updateLogoPhotoPath(Integer sid, String string);
 
 }
