@@ -9,7 +9,10 @@ import javax.servlet.ServletContext;
 
 import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.util.ServletContextAware;
+<<<<<<< HEAD
 import org.springframework.context.annotation.Scope;
+=======
+>>>>>>> c22cfc427e39f3a92336e0243da50fe6278f0c87
 import org.springframework.stereotype.Service;
 
 import com.stroz.survey.model.Survey;
@@ -19,7 +22,10 @@ import com.stroz.survey.struts2.UserAware;
 import com.stroz.survey.util.ValidateUtil;
 
 @Service
+<<<<<<< HEAD
 @Scope("prototype")
+=======
+>>>>>>> c22cfc427e39f3a92336e0243da50fe6278f0c87
 public class SurveyAction extends BaseAction<Survey> implements UserAware,ServletContextAware{
 
 	private static final long serialVersionUID = -8233625056708367886L;
@@ -32,6 +38,7 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 	
 	private File logoPhoto;
 	private String logoPhotoFileName;
+<<<<<<< HEAD
 	private String logoPhotoContentType;
 	private ServletContext sc;
 	
@@ -53,6 +60,12 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 	public void setLogoPhotoContentType(String logoPhotoContentType) {
 		this.logoPhotoContentType = logoPhotoContentType;
 	}
+=======
+	private ServletContext sc;
+	
+	
+	
+>>>>>>> c22cfc427e39f3a92336e0243da50fe6278f0c87
 	public File getLogoPhoto() {
 		return logoPhoto;
 	}
@@ -170,11 +183,14 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 		// TODO Auto-generated method stub
 		this.sc=arg0;
 	}
+<<<<<<< HEAD
 	
 	public void prepareDoAddLogo(){
 		//clearErrorsAndMessages(); 
 		inputPage="/addLogo.jsp";
 	}
+=======
+>>>>>>> c22cfc427e39f3a92336e0243da50fe6278f0c87
 	/*
 	 * 实现logo上传
 	 */

@@ -28,9 +28,17 @@
 		</tr>
 		<tr>
 			<td class="tdSHeaderL">
+<<<<<<< HEAD
 			<s:if test="photoExits()">
 					<img src="<s:url value="%{logoPath}" />" height="25px"	width="50px">
 			</s:if>
+=======
+			<!--  
+			<s:if test="photoExists()">
+			-->
+					<img src="<s:url value="%{logoPath}" />" height="25px"	width="50px">
+			<!--	</s:if> 	-->
+>>>>>>> c22cfc427e39f3a92336e0243da50fe6278f0c87
 				<!-- 调查标题 --> 
 				<s:property value="title" />
 			</td>
