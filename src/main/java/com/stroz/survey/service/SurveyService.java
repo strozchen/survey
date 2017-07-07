@@ -69,5 +69,14 @@ public interface SurveyService {
 	 * 更新logo路径
 	 */
 	public void updateLogoPhotoPath(Integer sid, String string);
+	/*
+	 * 查询调查集合，携带页面
+	 */
+	public List<Survey> getSurveyWithPage(User user);
+	/*
+	 * 执行移动/复制操作
+	 */
+	public void moveOrCopyPage(Integer srcPid,Integer targPid, int pos);
+
 
 }

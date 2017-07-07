@@ -5,10 +5,10 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.persistence.Query;
+
 
 import org.hibernate.SessionFactory;
-
+import org.hibernate.query.Query;
 
 import com.stroz.survey.dao.BaseDAO;
 @SuppressWarnings("unchecked")
@@ -83,6 +83,15 @@ public abstract class BaseDAOImpl<T> implements BaseDAO<T> {
 			query.setParameter(i, objects[i]);			
 		}
 		return query.getResultList();
+	}
+	
+	//µ•÷µ≤È—Ø
+	public Object uniqueResult(String hql,Object...objects){
+		Query query=sf.getCurrentSession().createQuery(hql);
+		for (int i=0;i<objects.length;i++){
+			query.setParameter(i, objects[i]);			
+		}
+		return query.uniqueResult();
 	}
 
 }

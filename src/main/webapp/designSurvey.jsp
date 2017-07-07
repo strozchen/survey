@@ -58,7 +58,7 @@
 											<td class="tdPHeaderL"><s:property value="#p.title" /></td>
 											<td class="tdPHeaderR">
 												<s:a namespace="/" action="PageAction_editPage?sid=%{#sId}&pid=%{#pId}">编辑页标题</s:a>&nbsp;
-												<s:a namespace="/" action="MoveOrCopyPageAction_toSelectTargetPage?srcPid=%{#pId}">移动/复制页</s:a>&nbsp;
+												<s:a namespace="/" action="MoveOrCopyAction_toSelectTargetPage?srcPid=%{#pId}">移动/复制页</s:a>&nbsp;
 												<s:a namespace="/" action="QuestionAction_toSelectQusetionType?sid=%{#sId}&pid=%{#pId}">增加问题</s:a>&nbsp;
 												<s:a namespace="/" action="PageAction_deletePage?sid=%{#sId}&pid=%{#pId}">删除页</s:a>&nbsp;
 											</td>

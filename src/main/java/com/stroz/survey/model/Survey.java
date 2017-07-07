@@ -1,11 +1,13 @@
 package com.stroz.survey.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 
-public class Survey {
+public class Survey implements Serializable{
+	private static final long serialVersionUID = 1522488731639925097L;
 	private Integer id;
 	private String title="未命名";
 	private String preText="上一步";

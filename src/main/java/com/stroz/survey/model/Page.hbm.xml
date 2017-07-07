@@ -14,6 +14,10 @@
         <property name="description" type="java.lang.String">
             <column name="DESCRIPTION" />
         </property>
+        <property name="ordernum" type="float">
+        <!-- 显示指定数据精度 -->
+        	<column name="ORDERNUM" sql-type="decimal(10,5)"/>
+        </property>
         <many-to-one name="survey" class="com.stroz.survey.model.Survey" fetch="join">
             <column name="SURVEY_ID" />
         </many-to-one>

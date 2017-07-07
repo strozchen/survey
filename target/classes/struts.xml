@@ -92,6 +92,11 @@
 			<result name="8">/designQusetion/matrixSelectQuestionDesign.jsp</result>
 			<allowed-methods>regex:.*</allowed-methods>
 		</action>
+		
+		<action name="MoveOrCopyAction_*" method="{1}" class="moveOrCopyAction">
+			<result name="moveOrCopyListPage">/moveOrCopyPageList.jsp</result>
+			<allowed-methods>regex:.*</allowed-methods>
+		</action>
 	</package>
 
 </struts>

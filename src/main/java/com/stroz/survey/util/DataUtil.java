@@ -1,8 +1,11 @@
 package com.stroz.survey.util;
 
-import java.nio.ByteBuffer;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class DataUtil {
 
@@ -25,5 +28,27 @@ public class DataUtil {
 		}
 		return null;
 		
+	}
+	
+	public static Serializable deeplyCopy(Serializable obj){
+		try {
+			ByteArrayOutputStream bos=new ByteArrayOutputStream();	
+			ObjectOutputStream oos=new ObjectOutputStream(bos);
+			oos.writeObject(obj);
+			byte[] bytes=bos.toByteArray();
+			bos.close();
+			oos.close();
+			
+			ByteArrayInputStream bis=new ByteArrayInputStream(bytes);
+			ObjectInputStream ois=new ObjectInputStream(bis);
+			bis.close();
+			ois.close();
+			Serializable copy=(Serializable) ois.readObject();
+			return copy;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

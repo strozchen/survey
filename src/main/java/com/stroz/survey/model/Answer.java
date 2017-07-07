@@ -1,9 +1,10 @@
 package com.stroz.survey.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Answer {
-
+public class Answer implements Serializable{
+	private static final long serialVersionUID = -3368370337809139688L;
 	private Integer id;
 	private String answerIds;//Ñ¡ÏîË÷Òý
 	private String otherAnswer;
